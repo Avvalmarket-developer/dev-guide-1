@@ -16,6 +16,7 @@ import sys
 import os
 
 from recommonmark.parser import CommonMarkParser
+from recommonmark.transform import AutoStructify
 
 source_parsers = {
     '.md': CommonMarkParser,
@@ -114,7 +115,7 @@ todo_include_todos = False
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-# html_theme = 'alabaster'
+html_theme = 'sphinx_rtd_theme'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -358,3 +359,12 @@ epub_exclude_files = ['search.html']
 
 # If false, no index is generated.
 #epub_use_index = True
+
+# app setup hook
+github_doc_root = 'https://github.com/avvalmarket/dev-guide/tree/master/doc/'
+def setup(app):
+    app.add_config_value('recommonmark_config', {
+            'url_resolver': lambda url: github_doc_root + url,
+            'auto_toc_tree_section': 'Contents',
+            }, True)
+    app.add_transform(AutoStructify)
