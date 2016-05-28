@@ -1032,7 +1032,7 @@ ServiceConnection mServiceConn = new ServiceConnection() {
 public void onCreate(Bundle savedInstanceState) {
   super.onCreate(savedInstanceState);
   setContentView(R.layout.activity_main);
-  Intent serviceIntent = new Intent("ir.cafebazaar.pardakht.InAppBillingService.BIND");
+  Intent serviceIntent = new Intent("com.hrm.android.market.billing.InAppBillingService.BIND");
   serviceIntent.setPackage("com.hrm.android.market");
   bindService(serviceIntent, mServiceConn, Context.BIND_AUTO_CREATE);
 
